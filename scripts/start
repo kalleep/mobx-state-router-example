@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+"use strict"
+
+process.env.NODE_ENV = "development";
+process.env.BABEL_ENV = "development";
+
+process.on("unhandledRejection", err => {
+	throw err;
+});
+
+const webpack = require("webpack");
+const config = require("../config/webpack.dev.js");
+
+const openBrowser = require("react-dev-utils/openBrowser");
+const clearConsole = require("react-dev-utils/clearConsole");
+const { createCompiler, prepareUrls } = require("react-dev-utils/WebpackDevServerUtils");
+
+const WebpackDevServer = require("webpack-dev-server");
+const serverConfig = require("../config/webpackDevServer.js");
+
+const protocol = "http";
+const host = process.env.HOST || "0.0.0.0";
+const port = parseInt(process.env.PORT, 10) || 8080;
+
+const urls = prepareUrls(protocol, host, port);
+const compiler = createCompiler(webpack, config, "management", urls, false);
+
+const devServer = new WebpackDevServer(compiler, serverConfig);
+
+devServer.listen(port, host, err => {
+	if(err) {
+		return console.log(err);
+	}
+
+	console.log(`Starting devserver on ${host}:${port}`);
+	openBrowser(urls.localUrlForBrowser);
+});
