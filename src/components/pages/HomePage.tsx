@@ -28,7 +28,7 @@ export class HomePage extends React.Component<IProps> {
 
 
 		return(
-			<div style={{ display: "flex" }} >
+			<div style={{ display: "flex", flexDirection: "column" }}>
 				home
 
 				<button onClick={() => this.goToUsers()}>users</button>

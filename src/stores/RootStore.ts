@@ -1,16 +1,19 @@
-import { RouterStore, RouterState } from "mobx-state-router";
 import { routes } from "../routes";
 
-interface Test {
+import { RouterStore, RouterState } from "mobx-state-router";
 
-}
+import { UserStore } from "./UserStore";
 
 export class RootStore {
 
-	routerStore: RouterStore;
+	readonly userStore: UserStore;
+	readonly routerStore: RouterStore;
 
 	constructor() {
+
+		this.userStore = new UserStore(this);
 		this.routerStore = new RouterStore(this, routes, new RouterState("notFound"))
+
 	}
 
 }

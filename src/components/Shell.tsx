@@ -8,11 +8,7 @@ import { HomePage } from "./pages/HomePage";
 import { UsersPage } from "./pages/UsersPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
-const viewMap = {
-	home: <HomePage/>,
-	users: <UsersPage/>,
-	notFound: <NotFoundPage/>,
-};
+import { UsersController } from "../controllers/UsersController";
 
 interface IProps {
 };
@@ -31,6 +27,13 @@ export class Shell extends React.Component {
 
 	render() {
 		const { rootStore } = this.injected;
+
+		const viewMap = {
+			home: <HomePage/>,
+			users: <UsersPage controller={new UsersController(this.injected.rootStore)}/>,
+			notFound: <NotFoundPage/>,
+		};
+
 		return (
 			<RouterView routerStore={rootStore.routerStore} viewMap={viewMap}/>
 		)
