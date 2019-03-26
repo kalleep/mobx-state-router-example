@@ -1,8 +1,8 @@
 {
 	"main": "index.js",
-	"name": "typescript-react-template",
+	"name": "mobx-state-router-example",
 	"version": "1.0.0",
-	"description": "A barebone react typescript template",
+	"description": "",
 	"author": "Karl Persson",
 	"license": "MIT",
 	"keywords": [
