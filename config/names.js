@@ -1,4 +1,4 @@
 
 module.exports = {
-	filename: "typescript-react-template.js"
+	filename: "mobx-state-router-example.js"
 };
